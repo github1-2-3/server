@@ -319,6 +319,9 @@ class AppSettingsController extends Controller {
 				}
 			}
 
+			if (!isset($app['releases'][0]['rawPlatformVersionSpec'])) {
+				continue;
+			}
 			$nextCloudVersion = $versionParser->getVersion($app['releases'][0]['rawPlatformVersionSpec']);
 			$nextCloudVersionDependencies = [];
 			if($nextCloudVersion->getMinimumVersion() !== '') {
