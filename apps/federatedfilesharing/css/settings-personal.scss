@@ -1,3 +1,7 @@
+#fileSharingSettings h2 {
+	display: inline-block;
+}
+
 #fileSharingSettings img {
 	cursor: pointer;
 }
@@ -32,7 +36,4 @@
 }
 .social-facebook {
 	@include icon-color('social-facebook', 'federatedfilesharing', $color-black);
-}
-.social-googleplus {
-	@include icon-color('social-googleplus', 'federatedfilesharing', $color-black);
 }

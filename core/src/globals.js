@@ -1,7 +1,7 @@
-/*
- * @copyright 2018 Christoph Wurst <christoph@winzerhof-wurst.at>
+/**
+ * @copyright 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
  *
- * @author 2018 Christoph Wurst <christoph@winzerhof-wurst.at>
+ * @author 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -19,6 +19,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * 
+ * @param {Function} func the library to deprecate
+ * @param {String} funcName the name of the library
+ */
+const deprecate = (func, funcName) => {
+	const oldFunc = func
+	const newFunc = function() {
+		console.warn(`The ${funcName} library is deprecated! It will be removed in nextcloud 19.`)
+		return oldFunc.apply(this, arguments)
+	}
+	Object.assign(newFunc, oldFunc)
+	return newFunc
+}
+
 import _ from 'underscore'
 import $ from 'jquery'
 import 'jquery-migrate/dist/jquery-migrate.min'
@@ -30,7 +45,8 @@ import 'jquery-ui-dist/jquery-ui.theme.css'
 // END TODO
 import autosize from 'autosize'
 import Backbone from 'backbone'
-import 'bootstrap/js/tooltip'
+import 'bootstrap/js/dist/tooltip'
+import './Polyfill/tooltip'
 import ClipboardJS from 'clipboard'
 import cssVars from 'css-vars-ponyfill'
 import dav from 'davclient.js'
@@ -70,18 +86,19 @@ window['Handlebars'] = Handlebars
 window['jstimezonedetect'] = jstimezonedetect
 window['jstz'] = jstimezonedetect
 window['jQuery'] = $
-window['marked'] = marked
+window['marked'] = deprecate(marked, 'marked')
 window['md5'] = md5
 window['moment'] = moment
 
 window['OC'] = OC
 window['OCP'] = OCP
 window['OCA'] = OCA
-window['escapeHTML'] = escapeHTML
-window['formatDate'] = formatDate
-window['getURLParameter'] = getURLParameter
-window['humanFileSize'] = humanFileSize
-window['relative_modified_date'] = relative_modified_date
+window['escapeHTML'] = deprecate(escapeHTML, 'escapeHTML')
+window['formatDate'] = deprecate(formatDate, 'formatDate')
+window['getURLParameter'] = deprecate(getURLParameter, 'getURLParameter')
+window['humanFileSize'] = deprecate(humanFileSize, 'humanFileSize')
+window['relative_modified_date'] = deprecate(relative_modified_date, 'relative_modified_date')
+$.fn.select2 = deprecate($.fn.select2, 'select2')
 
 /**
  * translate a string
