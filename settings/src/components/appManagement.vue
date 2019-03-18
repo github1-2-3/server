@@ -48,9 +48,9 @@
 			},
 			forceEnableButtonText() {
 				if (this.app.needsDownload) {
-					return t('settings', 'Download and force enable');
+					return t('settings', 'Enable untested app');
 				}
-				return t('settings', 'Force enable');
+				return t('settings', 'Enable untested app');
 			},
 			enableButtonTooltip() {
 				if (this.app.needsDownload) {

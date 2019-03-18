@@ -51,7 +51,7 @@
 				<input v-if="app.canUnInstall" class="uninstall" type="button" :value="t('settings', 'Remove')" v-on:click="remove(app.id)" :disabled="installing || loading(app.id)"/>
 				<input v-if="app.active" class="enable" type="button" :value="t('settings','Disable')" v-on:click="disable(app.id)" :disabled="installing || loading(app.id)" />
 				<input v-if="!app.active && (app.canInstall || app.isCompatible)" class="enable primary" type="button" :value="enableButtonText" v-on:click="enable(app.id)" v-tooltip.auto="enableButtonTooltip" :disabled="!app.canInstall || installing || loading(app.id)" />
-				<input v-else-if="!app.active" class="enable primary" type="button" :value="forceEnableButtonText" v-on:click="forceEnable(app.id)" v-tooltip.auto="forceEnableButtonTooltip" :disabled="installing || loading(app.id)" />
+				<input v-else-if="!app.active" class="enable force" type="button" :value="forceEnableButtonText" v-on:click="forceEnable(app.id)" v-tooltip.auto="forceEnableButtonTooltip" :disabled="installing || loading(app.id)" />
 			</div>
 			<div class="app-groups">
 				<div class="groups-enable" v-if="app.active && canLimitToGroups(app)">
@@ -227,3 +227,10 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+	.force {
+		background: red;
+		border-color: red;
+	}
+</style>

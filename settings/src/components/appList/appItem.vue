@@ -55,7 +55,7 @@
 			<input v-if="app.canUnInstall" class="uninstall" type="button" :value="t('settings', 'Remove')" v-on:click.stop="remove(app.id)" :disabled="installing || loading(app.id)" />
 			<input v-if="app.active" class="enable" type="button" :value="t('settings','Disable')" v-on:click.stop="disable(app.id)" :disabled="installing || loading(app.id)" />
 			<input v-if="!app.active && (app.canInstall || app.isCompatible)" class="enable" type="button" :value="enableButtonText" v-on:click.stop="enable(app.id)" v-tooltip.auto="enableButtonTooltip" :disabled="!app.canInstall || installing || loading(app.id)" />
-			<input v-else-if="!app.active" class="enable" type="button" :value="forceEnableButtonText" v-on:click.stop="forceEnable(app.id)" v-tooltip.auto="forceEnableButtonTooltip" :disabled="installing || loading(app.id)" />
+			<input v-else-if="!app.active" class="enable force" type="button" :value="forceEnableButtonText" v-on:click.stop="forceEnable(app.id)" v-tooltip.auto="forceEnableButtonTooltip" :disabled="installing || loading(app.id)" />
 		</div>
 	</div>
 </template>
@@ -117,3 +117,10 @@
 		}
 	}
 </script>
+
+<style scoped>
+	.force {
+		background: red;
+		border-color: red;
+	}
+</style>
