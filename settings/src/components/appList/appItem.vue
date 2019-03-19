@@ -120,7 +120,14 @@
 
 <style scoped>
 	.force {
-		background: red;
-		border-color: red;
+		background: var(--color-main-background);
+		border-color: var(--color-error);
+		color: var(--color-error);
+	}
+	.force:hover,
+	.force:active {
+		background: var(--color-error);
+		border-color: var(--color-error) !important;
+		color: var(--color-main-background);
 	}
 </style>
